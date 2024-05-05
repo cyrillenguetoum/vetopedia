@@ -22,6 +22,7 @@ class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
+            'assetic_configuration' => $this->getAssetsConfiguration(),
         ];
     }
 
@@ -36,6 +37,61 @@ class ConfigProvider
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+            ],
+        ];
+    }
+
+    /**
+     * Return the asset management configuration
+     */ 
+    public function getAssetsConfiguration(): array
+    {
+        return [
+            'debug' => true,
+            'buildOnRequest' => true,
+
+            'webPath' => __DIR__ . '/../../../public/assets',
+            'basePath' => 'assets',
+
+            'routes' => [
+                'home' => [
+                    '@base_js',
+                    '@base_css',
+                ],
+            ],
+
+            'modules' => [
+                'application' => [
+                    'root_path' => __DIR__ . '/../templates/assets',
+                    'collections' => [
+                        'base_css' => [
+                            'assets' => [
+                                'scss/styles.scss',
+                            ],
+                            'filters' => [
+                                'CssRewriteFilter' => [
+                                    'name' => 'Assetic\Filter\CssRewriteFilter'
+                                ]
+                            ],
+                        ],
+
+                        'base_js' => [
+                            'assets' => [
+                                'js/scripts.js',
+                            ]
+                        ],
+
+                        'base_images' => [
+                            'assets' => [
+                                'img/*.png',
+                                'img/*.ico',
+                            ],
+                            'options' => [
+                                'move_raw' => true,
+                            ]
+                        ],
+                    ],
+                ],
             ],
         ];
     }
