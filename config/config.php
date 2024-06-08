@@ -14,7 +14,6 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
-    \Fabiang\AsseticBundle\ConfigProvider::class,
     \Mezzio\Tooling\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Helper\ConfigProvider::class,

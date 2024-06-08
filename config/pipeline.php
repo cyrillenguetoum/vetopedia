@@ -66,9 +66,6 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based authentication
     // - route-based validation
     // - etc.
-    
-    // Register the Asset management Middleware 
-    $app->pipe(\Fabiang\AsseticBundle\AsseticMiddleware::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

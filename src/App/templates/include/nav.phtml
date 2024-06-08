@@ -1,0 +1,6 @@
+<?php
+if (isset($activeMenuItemId)) {
+        $this->mainMenu()->setActiveItemId($activeMenuItemId);
+    }
+// Render the navbar
+echo $this->mainMenu()->render();
